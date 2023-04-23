@@ -1,0 +1,30 @@
+diff --git a/setup.py b/setup.py
+index 164324e..ee41698 100644
+--- a/setup.py
++++ b/setup.py
+@@ -116,7 +116,7 @@ INCLUDES = {
+     'cygwin': [],
+ }
+
+-if sys.platform == 'win32' and sys.version_info < (3,9):
++if sys.platform == 'win32' and sys.version_info < (3,7):
+     ver_flag = '/D%s=\\"%s\\"'
+ else:
+     ver_flag = '-D%s="%s"'
+@@ -166,7 +166,7 @@ LIBRARIES = {
+     'darwin': [],
+     'linux': [],
+     'freebsd': ['icui18n', 'icuuc', 'icudata'],
+-    'win32': ['icuin', 'icuuc', 'icudt'],
++    'win32': ['icuin_', 'icuuc_', 'icudt_', 'icuio_', 'icutu_'],
+     'sunos5': ['icui18n', 'icuuc', 'icudata'],
+     'cygwin': ['icui18n', 'icuuc', 'icudata'],
+ }
+@@ -283,4 +283,6 @@ setup(name="PyICU",
+                              libraries=_libraries)],
+       package_dir={"": "py"},
+       packages=['icu'],
+-      tests_require=['pytest', 'six'])
++      tests_require=['pytest', 'six'],
++      package_data={"icu": ["*.dll",]},
++  )

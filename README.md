@@ -1,2 +1,2 @@
 # pyicu_build
-Build PyICU wheels for Windows
+Build [PyICU](https://gitlab.pyicu.org/main/pyicu) wheels for Python on Windows.
