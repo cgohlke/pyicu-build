@@ -1,11 +1,28 @@
+diff --git a/locale.cpp b/locale.cpp
+index f312967..eae3335 100644
+--- a/locale.cpp
++++ b/locale.cpp
+@@ -23,11 +23,11 @@
+ 
+ #include <stdlib.h>
+ #include <string.h>
+-#include <unistd.h>
+ 
+ #if defined(_MSC_VER) || defined(__WIN32)
+ #include <windows.h>
+ #else
++#include <unistd.h>
+ #include <sys/fcntl.h>
+ #include <sys/stat.h>
+ #include <sys/mman.h>
 diff --git a/setup.py b/setup.py
-index 164324e..ee41698 100644
+index 74d8e4c..0b60484 100644
 --- a/setup.py
 +++ b/setup.py
 @@ -116,7 +116,7 @@ INCLUDES = {
      'cygwin': [],
  }
-
+ 
 -if sys.platform == 'win32' and sys.version_info < (3,9):
 +if sys.platform == 'win32' and sys.version_info < (3,7):
      ver_flag = '/D%s=\\"%s\\"'
