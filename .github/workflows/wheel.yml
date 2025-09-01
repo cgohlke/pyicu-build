@@ -4,12 +4,12 @@ on:
   workflow_dispatch:
 
 env:
-  PYICU_TAG: v2.15
+  PYICU_TAG: v2.15.2
   ICU_VERSION: 77
   ICU_RELEASE: 77-1/icu4c-77_1
   CIBW_TEST_REQUIRES: pytest six
   CIBW_TEST_COMMAND: pytest {project}/test
-  CIBW_SKIP: "pp* cp36*"
+  CIBW_SKIP: "cp38* cp39* cp310*"
 
 jobs:
   build_amd64:
@@ -17,15 +17,15 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-2019]
+        os: [windows-latest]
     env:
       ICU_ARCH: 64
       ICU_PLAT: Win64-MSVC2022
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: download.cmd
         shell: cmd
-      - uses: pypa/cibuildwheel@v2.23.1
+      - uses: pypa/cibuildwheel@v3.1.4
         env:
           CIBW_ARCHS_WINDOWS: AMD64
           CIBW_ENVIRONMENT_WINDOWS: INCLUDE="include;$INCLUDE" LIB="lib$ICU_ARCH;$LIB"
@@ -38,15 +38,15 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-2019]
+        os: [windows-latest]
     env:
       ICU_ARCH: ARM64
       ICU_PLAT: WinARM64-MSVC2022
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: download.cmd
         shell: cmd
-      - uses: pypa/cibuildwheel@v2.23.1
+      - uses: pypa/cibuildwheel@v3.1.4
         env:
           CIBW_SKIP: "pp* cp36* cp37* cp38* cp39* cp310*"
           CIBW_ARCHS_WINDOWS: ARM64
@@ -60,14 +60,14 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-2019]
+        os: [windows-latest]
     env:
       ICU_PLAT: Win32-MSVC2022
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: download.cmd
         shell: cmd
-      - uses: pypa/cibuildwheel@v2.23.1
+      - uses: pypa/cibuildwheel@v3.1.4
         env:
           CIBW_ARCHS_WINDOWS: x86
           CIBW_ENVIRONMENT_WINDOWS: INCLUDE="include;$INCLUDE" LIB="lib$ICU_ARCH;$LIB"
