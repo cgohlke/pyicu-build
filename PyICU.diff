@@ -37,15 +37,3 @@ index 3f03c5e..e6181d2 100644
 +      tests_require=['pytest', 'six'],
 +      package_data={"icu": ["*.dll",]},
 +)
-diff --git a/arg.h b/arg.h
-index 28d566b..6df2e60 100644
---- a/arg.h
-+++ b/arg.h
-@@ -834,7 +834,6 @@ public:
- };
-
- #define _IS_POD(T)                                      \
--  static_assert(std::is_trivial<T>::value);             \
-   static_assert(std::is_standard_layout<T>::value)
-
- _IS_POD(AnyPythonObject);

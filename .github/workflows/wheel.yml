@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  PYICU_TAG: v2.15.2
+  PYICU_TAG: v2.15.3
   ICU_VERSION: 77
   ICU_RELEASE: 77-1/icu4c-77_1
   CIBW_TEST_REQUIRES: pytest six
@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@v5
       - run: download.cmd
         shell: cmd
-      - uses: pypa/cibuildwheel@v3.1.4
+      - uses: pypa/cibuildwheel@v3.2.0
         env:
           CIBW_ARCHS_WINDOWS: AMD64
           CIBW_ENVIRONMENT_WINDOWS: INCLUDE="include;$INCLUDE" LIB="lib$ICU_ARCH;$LIB"
@@ -46,7 +46,7 @@ jobs:
       - uses: actions/checkout@v5
       - run: download.cmd
         shell: cmd
-      - uses: pypa/cibuildwheel@v3.1.4
+      - uses: pypa/cibuildwheel@v3.2.0
         env:
           CIBW_SKIP: "pp* cp36* cp37* cp38* cp39* cp310*"
           CIBW_ARCHS_WINDOWS: ARM64
@@ -67,7 +67,7 @@ jobs:
       - uses: actions/checkout@v5
       - run: download.cmd
         shell: cmd
-      - uses: pypa/cibuildwheel@v3.1.4
+      - uses: pypa/cibuildwheel@v3.2.0
         env:
           CIBW_ARCHS_WINDOWS: x86
           CIBW_ENVIRONMENT_WINDOWS: INCLUDE="include;$INCLUDE" LIB="lib$ICU_ARCH;$LIB"
