@@ -6,4 +6,4 @@ The wheels can be downloaded from the [Releases](https://github.com/cgohlke/pyic
 
 Install a wheel on the command line, for example for Python 3.14 64-bit:
 
-    py.exe -3.14 -m pip install PyICU-2.16.0-cp314-cp314-win_amd64.whl
+    py.exe -3.14 -m pip install PyICU-2.16-cp314-cp314-win_amd64.whl
