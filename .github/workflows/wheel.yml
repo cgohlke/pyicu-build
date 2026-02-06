@@ -4,9 +4,10 @@ on:
   workflow_dispatch:
 
 env:
-  PYICU_TAG: v2.16
+  PYICU_TAG: v2.16.1
+  PYICU_VER: 2.16.1
   ICU_VERSION: 78
-  ICU_RELEASE: 78.1/icu4c-78.1
+  ICU_RELEASE: 78.2/icu4c-78.2
   CIBW_TEST_REQUIRES: pytest six
   CIBW_TEST_COMMAND: pytest {project}/test
   CIBW_SKIP: "cp38* cp39* cp310*"
@@ -22,14 +23,14 @@ jobs:
       ICU_ARCH: 64
       ICU_PLAT: Win64-MSVC2022
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - run: download.cmd
         shell: cmd
-      - uses: pypa/cibuildwheel@v3.2.1
+      - uses: pypa/cibuildwheel@v3.3.1
         env:
           CIBW_ARCHS_WINDOWS: AMD64
           CIBW_ENVIRONMENT_WINDOWS: INCLUDE="include;$INCLUDE" LIB="lib$ICU_ARCH;$LIB"
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         with:
           path: ./wheelhouse/*.whl
           name: wheels-win-amd64
@@ -43,14 +44,14 @@ jobs:
       ICU_ARCH: ARM64
       ICU_PLAT: WinARM64-MSVC2022
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - run: download.cmd
         shell: cmd
-      - uses: pypa/cibuildwheel@v3.2.1
+      - uses: pypa/cibuildwheel@v3.3.1
         env:
           CIBW_ARCHS_WINDOWS: ARM64
           CIBW_ENVIRONMENT_WINDOWS: INCLUDE="include;$INCLUDE" LIB="lib$ICU_ARCH;$LIB"
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         with:
           path: ./wheelhouse/*.whl
           name: wheels-win-arm64
@@ -63,14 +64,14 @@ jobs:
     env:
       ICU_PLAT: Win32-MSVC2022
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - run: download.cmd
         shell: cmd
-      - uses: pypa/cibuildwheel@v3.2.1
+      - uses: pypa/cibuildwheel@v3.3.1
         env:
           CIBW_ARCHS_WINDOWS: x86
           CIBW_ENVIRONMENT_WINDOWS: INCLUDE="include;$INCLUDE" LIB="lib;$LIB"
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         with:
           path: ./wheelhouse/*.whl
           name: wheels-win32

@@ -1,7 +1,9 @@
 :: Download and prepare PyICU and ICU4C source code
 @echo on
 
-curl -L -o pyicu.zip https://gitlab.pyicu.org/main/pyicu/-/archive/%PYICU_TAG%/pyicu-%PYICU_TAG%.zip
+:: pyicu.org is down
+:: curl -L -o pyicu.zip https://gitlab.pyicu.org/main/pyicu/-/archive/%PYICU_TAG%/pyicu-%PYICU_TAG%.zip
+curl -L -o pyicu.zip https://files.pythonhosted.org/packages/source/p/pyicu/pyicu-%PYICU_VER%.tar.gz
 if errorlevel 1 exit /B 1
 
 tar -xf pyicu.zip --strip-components=1
