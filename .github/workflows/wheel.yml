@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
 
 env:
-  PYICU_TAG: v2.16.1
-  PYICU_VER: 2.16.1
+  PYICU_TAG: v2.16.2
+  PYICU_VER: 2.16.2
   ICU_VERSION: 78
-  ICU_RELEASE: 78.2/icu4c-78.2
+  ICU_RELEASE: 78.3/icu4c-78.3
   CIBW_TEST_REQUIRES: pytest six
   CIBW_TEST_COMMAND: pytest {project}/test
   CIBW_SKIP: "cp38* cp39* cp310*"
@@ -26,11 +26,11 @@ jobs:
       - uses: actions/checkout@v6
       - run: download.cmd
         shell: cmd
-      - uses: pypa/cibuildwheel@v3.3.1
+      - uses: pypa/cibuildwheel@v3.4.0
         env:
           CIBW_ARCHS_WINDOWS: AMD64
           CIBW_ENVIRONMENT_WINDOWS: INCLUDE="include;$INCLUDE" LIB="lib$ICU_ARCH;$LIB"
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         with:
           path: ./wheelhouse/*.whl
           name: wheels-win-amd64
@@ -47,11 +47,11 @@ jobs:
       - uses: actions/checkout@v6
       - run: download.cmd
         shell: cmd
-      - uses: pypa/cibuildwheel@v3.3.1
+      - uses: pypa/cibuildwheel@v3.4.0
         env:
           CIBW_ARCHS_WINDOWS: ARM64
           CIBW_ENVIRONMENT_WINDOWS: INCLUDE="include;$INCLUDE" LIB="lib$ICU_ARCH;$LIB"
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         with:
           path: ./wheelhouse/*.whl
           name: wheels-win-arm64
@@ -67,11 +67,11 @@ jobs:
       - uses: actions/checkout@v6
       - run: download.cmd
         shell: cmd
-      - uses: pypa/cibuildwheel@v3.3.1
+      - uses: pypa/cibuildwheel@v3.4.0
         env:
           CIBW_ARCHS_WINDOWS: x86
           CIBW_ENVIRONMENT_WINDOWS: INCLUDE="include;$INCLUDE" LIB="lib;$LIB"
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         with:
           path: ./wheelhouse/*.whl
           name: wheels-win32
