@@ -10,7 +10,8 @@ env:
   ICU_RELEASE: 78.3/icu4c-78.3
   CIBW_TEST_REQUIRES: pytest six
   CIBW_TEST_COMMAND: pytest {project}/test
-  CIBW_SKIP: "cp38* cp39* cp310*"
+  CIBW_SKIP: "cp39* cp310* cp311*"
+  CIBW_REPAIR_WHEEL_COMMAND: ""
 
 jobs:
   build_amd64:
@@ -23,10 +24,10 @@ jobs:
       ICU_ARCH: 64
       ICU_PLAT: Win64-MSVC2022
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - run: download.cmd
         shell: cmd
-      - uses: pypa/cibuildwheel@v3.4.0
+      - uses: pypa/cibuildwheel@v4.2.0
         env:
           CIBW_ARCHS_WINDOWS: AMD64
           CIBW_ENVIRONMENT_WINDOWS: INCLUDE="include;$INCLUDE" LIB="lib$ICU_ARCH;$LIB"
@@ -44,10 +45,10 @@ jobs:
       ICU_ARCH: ARM64
       ICU_PLAT: WinARM64-MSVC2022
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - run: download.cmd
         shell: cmd
-      - uses: pypa/cibuildwheel@v3.4.0
+      - uses: pypa/cibuildwheel@v4.2.0
         env:
           CIBW_ARCHS_WINDOWS: ARM64
           CIBW_ENVIRONMENT_WINDOWS: INCLUDE="include;$INCLUDE" LIB="lib$ICU_ARCH;$LIB"
@@ -64,10 +65,10 @@ jobs:
     env:
       ICU_PLAT: Win32-MSVC2022
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - run: download.cmd
         shell: cmd
-      - uses: pypa/cibuildwheel@v3.4.0
+      - uses: pypa/cibuildwheel@v4.2.0
         env:
           CIBW_ARCHS_WINDOWS: x86
           CIBW_ENVIRONMENT_WINDOWS: INCLUDE="include;$INCLUDE" LIB="lib;$LIB"
