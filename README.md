@@ -4,6 +4,6 @@ Build [PyICU](https://gitlab.pyicu.org/main/pyicu) wheels for Windows using [Git
 
 The wheels can be downloaded from the [Releases](https://github.com/cgohlke/pyicu-build/releases) page.
 
-Install a wheel on the command line, for example for Python 3.14 64-bit:
+Install a wheel on the command line, for example for Python 3.15 64-bit:
 
-    py.exe -3.14 -m pip install pyicu-2.16.2-cp314-cp314-win_amd64.whl
+    py.exe -3.15 -m pip install pyicu-2.17-cp315-cp315-win_amd64.whl
